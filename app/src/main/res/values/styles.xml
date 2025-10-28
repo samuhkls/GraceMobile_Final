@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Grace" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- cores primárias se quiser -->
+        <item name="colorPrimary">#4C8BF5</item>
+        <item name="colorPrimaryVariant">#0059FF</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+</resources>

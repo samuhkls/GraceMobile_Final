@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Grace</string>
+    <string name="title_activity_admin">Admin</string>
+    <string name="title_activity_consulta">ConsultaActivity</string>
+    <string name="title_activity_sobre">SobreActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_cadastro">CadastroActivity</string>
+    <string name="login">Login</string>
+    <string name="entrar">Entrar</string>
+</resources>
