@@ -1,10 +1,64 @@
 <resources>
     <string name="app_name">Grace</string>
-    <string name="title_activity_admin">Admin</string>
-    <string name="title_activity_consulta">ConsultaActivity</string>
-    <string name="title_activity_sobre">SobreActivity</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_cadastro">CadastroActivity</string>
-    <string name="login">Login</string>
-    <string name="entrar">Entrar</string>
+
+    <string name="erro_campo_obrigatorio">Campo obrigatório</string>
+    <string name="erro_senhas_nao_conferem">As senhas não conferem</string>
+    <string name="cadastro_sucesso">Cadastro realizado com sucesso!</string>
+
+    <string name="hint_email">E-mail</string>
+    <string name="hint_senha">Senha</string>
+    <string name="btn_entrar">ENTRAR</string>
+    <string name="link_esqueceu_senha">Esqueceu a senha? Clique aqui</string>
+    <string name="link_cadastrar">Ainda não tem conta? Cadastre-se</string>
+
+    <string name="titulo_cadastro">Cadastrar Novo Usuário</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_cpf">CPF</string>
+    <string name="label_tipo_usuario">Tipo de Usuário:</string>
+    <string name="rb_doador">Doador</string>
+    <string name="rb_receptor">Receptor</string>
+    <string name="hint_confirmar_senha">Confirme a Senha</string>
+    <string name="btn_cadastrar">Cadastrar</string>
+
+    <string name="titulo_sobre_nos">Sobre Nós</string>
+    <string name="descricao_sobre_nos">Somos um trio de estudantes de Sistemas de Informação do Centro Universitário Senac apaixonados por tecnologia e com um objetivo em comum: usar nossas habilidades para fazer a diferença. Estamos atualmente desenvolvendo um aplicativo mobile inovador, focado em otimizar e simplificar o processo de doações para igrejas. Nossa missão é oferecer uma solução tecnológica que facilite a conexão entre doadores, receptores e instituições religiosas, tornando o ato de doar mais acessível e transparente.</string>
+
+    <string name="titulo_duvidas">Dúvidas? Entre em contato Conosco</string>
+    <string name="descricao_duvidas">Queremos te ajudar. Se tiver dúvidas ou precisar de suporte, escolha o melhor canal abaixo para entrar em contato conosco.</string>
+    <string name="label_email">E-MAIL: grace@gmail.com</string>
+    <string name="label_telefone">TELEFONE: (11) 4002-8922</string>
+
+    <string name="titulo_login">Login</string>
+    <string name="titulo_consulta">Consulta de Produtos</string>
+    <string name="titulo_admin">Painel do Administrador</string>
+
+    <string name="saudacao_ola">Olá,</string> <string name="mensagem_boas_vindas">Seja bem-vindo de volta!</string>
+    <string name="desc_perfil">Ícone de perfil do usuário</string>
+    <string name="hint_buscar_doacoes">Buscar doações</string>
+    <string name="btn_nova_doacao">Nova Doação</string>
+
+    <string name="titulo_produtos_doacao">Produtos para Doação</string>
+
+    <string name="desc_logo_grace">Logo Grace</string>
+    <string name="desc_icone_doacoes">Ícone de Doações</string>
+    <string name="label_doacoes_realizadas">Doações Realizadas</string>
+    <string name="desc_icone_solicitacoes">Ícone de Solicitações</string>
+    <string name="label_solicitacoes_pendentes">Solicitações Pendentes</string>
+    <string name="btn_itens_doados">Itens Doados</string>
+    <string name="btn_add_nova_doacao">Adicionar nova doação</string>
+    <string name="label_nenhuma_doacao">Nenhuma doação registrada ainda.</string>
+
+    <string name="desc_icone_categoria">ícone da categoria</string>
+    <string name="placeholder_nome_categoria">Nome da Categoria</string>
+    <string name="desc_imagem_produto">Imagem do produto</string>
+    <string name="placeholder_nome_produto">Arroz 5kg</string>
+    <string name="placeholder_desc_produto">Pacote de arroz doado por membros da igreja.</string>
+    <string name="placeholder_quantidade">Quantidade: 12 unidades</string>
+
+    <string name="categoria_higiene">Produtos de Higiene</string>
+    <string name="categoria_alimentos">Alimentos</string>
+    <string name="categoria_roupas">Roupas</string>
+    <string name="categoria_livros">Livros</string>
+    <string name="categoria_brinquedos">Brinquedos</string>
+    <string name="hint_selecione_categoria">Selecione a categoria</string>
 </resources>

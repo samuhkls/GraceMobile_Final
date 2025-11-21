@@ -8,7 +8,6 @@
     android:background="@drawable/background_gradient"
     tools:context=".MainActivity">
 
-    <!-- Cabeçalho azul degradê -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="0dp"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Saudação e mensagem -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,7 +31,8 @@
                 android:id="@+id/tvSaudacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Olá, João!"
+                android:text="@string/saudacao_ola"
+                tools:text="Olá, João!"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -42,27 +41,34 @@
                 android:id="@+id/tvMensagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seja bem-vindo de volta!"
+                android:text="@string/mensagem_boas_vindas"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"/>
         </LinearLayout>
 
-        <!-- Ícone de perfil -->
         <ImageView
-            android:id="@+id/ivPerfil"
+            android:id="@+id/ivPerfil1"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:padding="10dp"
-            android:contentDescription="" />
+            android:src="@drawable/ic_person"
+            android:contentDescription="@string/desc_perfil" />
+
+        <ImageView
+            android:id="@+id/ivPerfil2"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_person"
+            android:contentDescription="@string/desc_perfil" />
     </LinearLayout>
 
-    <!-- Campo de busca -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Buscar doações"
+        android:hint="@string/hint_buscar_doacoes"
         app:startIconDrawable="@drawable/ic_search"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
@@ -82,7 +88,6 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- RecyclerView para categorias -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategorias"
         android:layout_width="0dp"
@@ -97,13 +102,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/item_categoria" />
 
-    <!-- Botão principal -->
     <Button
         android:id="@+id/btnAcaoPrincipal"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_margin="20dp"
-        android:text="Nova Doação"
+        android:text="@string/btn_nova_doacao"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:textColor="@android:color/white"

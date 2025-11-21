@@ -1,10 +1,11 @@
 package com.example.grace
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class SobreActivity : AppCompatActivity() {
+class ContatoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sobre)
+        setContentView(R.layout.activity_contato)
     }
 }

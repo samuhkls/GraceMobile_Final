@@ -1,6 +1,6 @@
-package com.example.grace
+package com.example.grace.model
 
 data class Categoria(
     val nome: String,
-    val icone: Int
+    val iconeResId: Int
 )

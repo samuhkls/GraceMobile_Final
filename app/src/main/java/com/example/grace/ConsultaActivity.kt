@@ -1,47 +1,28 @@
 package com.example.grace
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.grace.ui.theme.GraceTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.grace.ui.theme.ProdutoAdapter
 
-class ConsultaActivity : ComponentActivity() {
+class ConsultaActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            GraceTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting3(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-    }
-}
+        setContentView(R.layout.activity_consulta)
 
-@Composable
-fun Greeting3(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        val rvProdutos = findViewById<RecyclerView>(R.id.rvProdutos)
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview3() {
-    GraceTheme {
-        Greeting3("Android")
+        val produtos = listOf(
+            Produto("Arroz 5kg", "Pacote de arroz integral doado por membros.", 10, R.drawable.ic_food),
+            Produto("Sabonetes", "Sabonetes em barra variados.", 25, R.drawable.ic_hygiene),
+            Produto("Camisas", "Roupas em bom estado para adultos e crianças.", 15, R.drawable.ic_clothes),
+            Produto("Livros", "Coleção de livros infantis e educacionais.", 8, R.drawable.ic_books),
+            Produto("Brinquedos", "Brinquedos diversos em ótimo estado.", 12, R.drawable.ic_toys)
+        )
+
+        rvProdutos.layoutManager = LinearLayoutManager(this)
+        rvProdutos.adapter = ProdutoAdapter(produtos)
     }
 }

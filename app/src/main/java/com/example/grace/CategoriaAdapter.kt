@@ -1,4 +1,4 @@
-package com.example.grace.ui.theme
+package com.example.grace.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grace.R
-import com.example.grace.Categoria
+import com.example.grace.model.Categoria
 
-class CategoriaAdapter(private val lista: List<Categoria>) :
+class CategoriaAdapter(private val categorias: List<Categoria>) :
     RecyclerView.Adapter<CategoriaAdapter.CategoriaViewHolder>() {
-
-    class CategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val icone: ImageView = itemView.findViewById(R.id.ivCategoria)
-        val nome: TextView = itemView.findViewById(R.id.tvCategoria)
+    class CategoriaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvCategoria: TextView = view.findViewById(R.id.tvCategoria)
+        val ivCategoria: ImageView = view.findViewById(R.id.ivCategoria)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriaViewHolder {
@@ -23,11 +22,12 @@ class CategoriaAdapter(private val lista: List<Categoria>) :
         return CategoriaViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CategoriaViewHolder, position: Int) {
-        val item = lista[position]
-        holder.nome.text = item.nome
-        holder.icone.setImageResource(item.icone)
+    override fun onBindViewHolder(holder: CategoriaViewHolder, posicao: Int) {
+        val categoria = categorias[posicao]
+        holder.tvCategoria.text = categoria.nome
+        holder.ivCategoria.setImageResource(categoria.iconeResId)
+
     }
 
-    override fun getItemCount(): Int = lista.size
+    override fun getItemCount() = categorias.size
 }

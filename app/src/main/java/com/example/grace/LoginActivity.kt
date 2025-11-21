@@ -1,54 +1,86 @@
 package com.example.grace
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.grace.ui.theme.GraceTheme
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.example.grace.model.LoginResponse
+import com.example.grace.network.RetrofitClient // <-- IMPORTA NOSSO CLIENTE
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import retrofit2.Call // <-- IMPORTA O RETROFIT
+import retrofit2.Callback // <-- IMPORTA O RETROFIT
+import retrofit2.Response // <-- IMPORTA O RETROFIT
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // 1. Diz qual layout XML esta classe deve usar
-        setContentView(R.layout.activity_login) // O nome do seu XML de login
-
-        // 2. Encontra o TextView "Cadastre-se" pelo ID que você deu no XML
+        setContentView(R.layout.activity_login)
+        val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
+        val etSenha = findViewById<TextInputEditText>(R.id.etSenha)
+        val tilEmail = findViewById<TextInputLayout>(R.id.tilEmail)
+        val tilSenha = findViewById<TextInputLayout>(R.id.tilSenha)
+        val btnEntrar = findViewById<Button>(R.id.btnEntrar)
         val tvCadastrar = findViewById<TextView>(R.id.tvCadastrar)
 
-        // 3. Adiciona um "ouvinte" de clique
         tvCadastrar.setOnClickListener {
-            // 4. Cria a "Intenção" de abrir a CadastroActivity
             val intent = Intent(this, CadastroActivity::class.java)
-
-            // 5. Executa a intenção (abre a tela)
             startActivity(intent)
         }
-    }
-}
 
-@Composable
-fun Greeting5(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        btnEntrar.setOnClickListener {
+            val email = etEmail.text.toString()
+            val senha = etSenha.text.toString()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview5() {
-    GraceTheme {
-        Greeting5("Android")
+            tilEmail.error = null
+            tilSenha.error = null
+
+            if (email.isEmpty()) {
+                tilEmail.error = getString(R.string.erro_campo_obrigatorio)
+                return@setOnClickListener // Para a execução aqui
+            }
+            if (senha.isEmpty()) {
+                tilSenha.error = getString(R.string.erro_campo_obrigatorio)
+                return@setOnClickListener
+            }
+
+            val apiService = RetrofitClient.apiService
+
+            val call = apiService.login(usuario = email, senha = senha)
+
+            call.enqueue(object : Callback<List<LoginResponse>> {
+
+                override fun onResponse(
+                    call: Call<List<LoginResponse>>,
+                    response: Response<List<LoginResponse>>
+                ) {
+                    if (response.isSuccessful) {
+                        val loginResponses = response.body()
+
+                        if (loginResponses != null && loginResponses.isNotEmpty()) {
+                            val usuarioLogado = loginResponses[0]
+                            Toast.makeText(this@LoginActivity, "Bem-vindo, ${usuarioLogado.usuarioNome}!", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.putExtra("USER_NAME", usuarioLogado.usuarioNome)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+
+                        } else {
+
+                            Toast.makeText(this@LoginActivity, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Erro no login", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<List<LoginResponse>>, t: Throwable) {
+
+                    Toast.makeText(this@LoginActivity, "Erro de conexão: ${t.message}", Toast.LENGTH_LONG).show()
+                }
+            })
+        }
     }
 }

@@ -6,21 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context=".ui.theme.CadastroActivity">
+    tools:context="CadastroActivity">
 
-    <!-- Logo -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginTop="36dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/logo_grace"
         android:contentDescription="@string/app_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Card de Cadastro -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCadastro"
         android:layout_width="0dp"
@@ -47,58 +45,60 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- Título -->
                 <TextView
                     android:id="@+id/tvTituloCadastro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cadastrar Novo Usuário"
+                    android:text="@string/titulo_cadastro"
                     android:textColor="#2B66F8"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
                     android:paddingBottom="16dp"/>
 
-                <!-- Nome -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome"
+                    android:hint="@string/hint_nome"
+                    app:hintTextColor="#808080"
+                    android:textColorHint="#808080"
                     app:boxStrokeColor="#CFCFCF" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"/>
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Espaço -->
                 <View android:layout_width="match_parent" android:layout_height="12dp"/>
 
-                <!-- E-mail -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmailCadastro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="E-mail"
+                    android:hint="@string/hint_email"
+                    app:hintTextColor="#808080"
+                    android:textColorHint="#808080"
                     app:boxStrokeColor="#CFCFCF" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="textEmailAddress"
+                        android:textColor="@android:color/black"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Espaço -->
                 <View android:layout_width="match_parent" android:layout_height="12dp"/>
 
-                <!-- Tipo de Usuário -->
                 <TextView
                     android:id="@+id/tvTipoUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tipo de Usuário:"
+                    android:text="@string/label_tipo_usuario"
                     android:textStyle="bold"
                     android:textColor="#2B66F8"
                     android:layout_marginBottom="4dp"/>
@@ -114,7 +114,7 @@
                         android:id="@+id/rbDoador"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Doador"
+                        android:text="@string/rb_doador"
                         android:textColor="#2B66F8"
                         android:checked="true"/>
 
@@ -122,59 +122,80 @@
                         android:id="@+id/rbReceptor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Receptor"
+                        android:text="@string/rb_receptor"
                         android:textColor="#2B66F8"
                         android:layout_marginStart="24dp"/>
                 </RadioGroup>
 
-                <!-- Espaço -->
                 <View android:layout_width="match_parent" android:layout_height="12dp"/>
 
-                <!-- Senha -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCpf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Senha"
+                    android:hint="@string/hint_cpf"
+                    app:hintTextColor="#808080"
+                    android:textColorHint="#808080"
+                    app:boxStrokeColor="#CFCFCF" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCpf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textColor="@android:color/black"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="12dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilSenhaCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_senha"
+                    app:hintTextColor="#808080"
+                    android:textColorHint="#808080"
                     app:boxStrokeColor="#CFCFCF" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSenha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Espaço -->
                 <View android:layout_width="match_parent" android:layout_height="12dp"/>
 
-                <!-- Confirmar Senha -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilConfirmarSenha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirme a Senha"
+                    android:hint="@string/hint_confirmar_senha"
+                    app:hintTextColor="#808080"
+                    android:textColorHint="#808080"
                     app:boxStrokeColor="#CFCFCF" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etConfirmarSenha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Botão -->
                 <Button
                     android:id="@+id/btnCadastrar"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="24dp"
-                    android:text="Cadastrar"
+                    android:text="@string/btn_cadastrar"
                     android:textAllCaps="true"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:background="@drawable/btn_login_gradient"
                     android:elevation="6dp"/>
 
-                <!-- Espaço final -->
                 <View android:layout_width="match_parent" android:layout_height="16dp"/>
 
             </LinearLayout>

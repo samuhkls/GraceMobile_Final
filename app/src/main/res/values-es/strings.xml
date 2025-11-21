@@ -1,0 +1,64 @@
+<resources>
+    <string name="erro_campo_obrigatorio">Campo obligatorio</string>
+    <string name="erro_senhas_nao_conferem">Las contraseñas no coinciden</string>
+    <string name="cadastro_sucesso">¡Registro completado con éxito!</string>
+
+    <string name="hint_email">Correo Electrónico</string>
+    <string name="hint_senha">Contraseña</string>
+    <string name="btn_entrar">ENTRAR</string>
+    <string name="link_esqueceu_senha">¿Olvidaste tu contraseña? Haz clic aquí</string>
+    <string name="link_cadastrar">¿No tienes cuenta? Regístrate</string>
+
+    <string name="titulo_cadastro">Registrar Nuevo Usuario</string>
+    <string name="hint_nome">Nombre</string>
+    <string name="hint_cpf">CPF (ID Fiscal)</string>
+    <string name="label_tipo_usuario">Tipo de Usuario:</string>
+    <string name="rb_doador">Donante</string>
+    <string name="rb_receptor">Receptor</string>
+    <string name="hint_confirmar_senha">Confirmar Contraseña</string>
+    <string name="btn_cadastrar">Registrar</string>
+
+    <string name="titulo_sobre_nos">Sobre Nosotros</string>
+    <string name="descricao_sobre_nos">Somos un trío de estudiantes de Sistemas de Información del Centro Universitario Senac, apasionados por la tecnología y con un objetivo común: usar nuestras habilidades para marcar la diferencia. Actualmente estamos desarrollando una innovadora aplicación móvil, enfocada en optimizar y simplificar el proceso de donaciones para iglesias. Nuestra misión es ofrecer una solución tecnológica que facilite la conexión entre donantes, receptores e instituciones religiosas, haciendo el acto de donar más accesible y transparente.</string>
+
+    <string name="titulo_duvidas">¿Dudas? Contáctenos</string>
+    <string name="descricao_duvidas">Queremos ayudarte. Si tienes dudas o necesitas soporte, elige el mejor canal a continuación para ponerte en contacto con nosotros.</string>
+    <string name="label_email">E-MAIL: grace@gmail.com</string>
+    <string name="label_telefone">TELÉFONO: (11) 4002-8922</string>
+
+    <string name="titulo_login">Login</string>
+    <string name="titulo_consulta">Consulta de Productos</string>
+    <string name="titulo_admin">Panel de Administrador</string>
+
+    <string name="saudacao_ola">¡Hola,</string>
+    <string name="mensagem_boas_vindas">¡Bienvenido de vuelta!</string>
+    <string name="desc_perfil">Icono de perfil de usuario</string>
+    <string name="hint_buscar_doacoes">Buscar donaciones</string>
+    <string name="btn_nova_doacao">Nueva Donación</string>
+
+    <string name="titulo_produtos_doacao">Productos para Donación</string>
+
+    <string name="desc_logo_grace">Logo Grace</string>
+    <string name="desc_icone_doacoes">Icono de Donaciones</string>
+    <string name="label_doacoes_realizadas">Donaciones Realizadas</string>
+    <string name="desc_icone_solicitacoes">Icono de Solicitudes</string>
+    <string name="label_solicitacoes_pendentes">Solicitudes Pendientes</string>
+    <string name="btn_itens_doados">Artículos Donados</string>
+    <string name="btn_add_nova_doacao">Añadir nueva donación</string>
+    <string name="label_nenhuma_doacao">Aún no hay donaciones registradas.</string>
+
+    <string name="desc_icone_categoria">Icono de la categoría</string>
+    <string name="placeholder_nome_categoria">Nombre de la Categoría</string>
+    <string name="desc_imagem_produto">Imagen del producto</string>
+    <string name="placeholder_nome_produto">Arroz 5kg</string>
+    <string name="placeholder_desc_produto">Paquete de arroz donado por miembros de la iglesia.</string>
+    <string name="placeholder_quantidade">Cantidad: 12 unidades</string>
+
+    <string name="categoria_higiene">Productos de Higiene</string>
+    <string name="categoria_alimentos">Alimentos</string>
+    <string name="categoria_roupas">Ropa</string>
+    <string name="categoria_livros">Libros</string>
+    <string name="categoria_brinquedos">Juguetes</string>
+    <string name="hint_selecione_categoria">Seleccione la categoría</string>
+
+</resources>

@@ -1,0 +1,63 @@
+<resources>
+    <string name="erro_campo_obrigatorio">Required field</string>
+    <string name="erro_senhas_nao_conferem">Passwords do not match</string>
+    <string name="cadastro_sucesso">Registration successful!</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_senha">Password</string>
+    <string name="btn_entrar">LOG IN</string>
+    <string name="link_esqueceu_senha">Forgot password? Click here</string>
+    <string name="link_cadastrar">Don\'t have an account? Sign up</string>
+
+    <string name="titulo_cadastro">Register New User</string>
+    <string name="hint_nome">Name</string>
+    <string name="hint_cpf">CPF (Tax ID)</string>
+    <string name="label_tipo_usuario">User Type:</string>
+    <string name="rb_doador">Donor</string>
+    <string name="rb_receptor">Recipient</string>
+    <string name="hint_confirmar_senha">Confirm Password</string>
+    <string name="btn_cadastrar">Register</string>
+
+    <string name="titulo_sobre_nos">About Us</string>
+    <string name="descricao_sobre_nos">We are a trio of Information Systems students from Senac University Center, passionate about technology and with a common goal: to use our skills to make a difference. We are currently developing an innovative mobile application focused on optimizing and simplifying the donation process for churches. Our mission is to offer a technological solution that facilitates the connection between donors, recipients, and religious institutions, making the act of donating more accessible and transparent.</string>
+
+    <string name="titulo_duvidas">Questions? Contact Us</string>
+    <string name="descricao_duvidas">We want to help. If you have questions or need support, choose the best channel below to get in touch with us.</string>
+    <string name="label_email">E-MAIL: grace@gmail.com</string>
+    <string name="label_telefone">PHONE: (11) 4002-8922</string>
+
+    <string name="titulo_login">Login</string>
+    <string name="titulo_consulta">Consulta de Productos</string>
+    <string name="titulo_admin">Panel de Administrador</string>
+
+    <string name="saudacao_ola">Hello,</string>
+    <string name="mensagem_boas_vindas">Welcome back!</string>
+    <string name="desc_perfil">User profile icon</string>
+    <string name="hint_buscar_doacoes">Search donations</string>
+    <string name="btn_nova_doacao">New Donation</string>
+
+    <string name="titulo_produtos_doacao">Products for Donation</string>
+
+    <string name="desc_logo_grace">Grace Logo</string>
+    <string name="desc_icone_doacoes">Donations Icon</string>
+    <string name="label_doacoes_realizadas">Donations Made</string>
+    <string name="desc_icone_solicitacoes">Requests Icon</string>
+    <string name="label_solicitacoes_pendentes">Pending Requests</string>
+    <string name="btn_itens_doados">Donated Items</string>
+    <string name="btn_add_nova_doacao">Add new donation</string>
+    <string name="label_nenhuma_doacao">No donations registered yet.</string>
+
+    <string name="desc_icone_categoria">Category icon</string>
+    <string name="placeholder_nome_categoria">Category Name</string>
+    <string name="desc_imagem_produto">Product image</string>
+    <string name="placeholder_nome_produto">Rice 5kg</string>
+    <string name="placeholder_desc_produto">Package of rice donated by church members.</string>
+    <string name="placeholder_quantidade">Quantity: 12 units</string>
+
+    <string name="categoria_higiene">Hygiene Products</string>
+    <string name="categoria_alimentos">Food</string>
+    <string name="categoria_roupas">Clothing</string>
+    <string name="categoria_livros">Books</string>
+    <string name="categoria_brinquedos">Toys</string>
+    <string name="hint_selecione_categoria">Select category</string>
+</resources>

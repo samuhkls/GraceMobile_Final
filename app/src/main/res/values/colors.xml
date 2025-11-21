@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_12">#20FFFFFF</color> <!-- branco 12% -->
     <color name="link_blue">#2B66F8</color>
+    <color name="orange">#FFA726</color>
 </resources>
