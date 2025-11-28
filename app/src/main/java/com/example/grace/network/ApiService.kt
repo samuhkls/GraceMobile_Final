@@ -1,6 +1,7 @@
 package com.example.grace.network
 
 import com.example.grace.model.CadastroResponse
+import com.example.grace.model.Doacao
 import com.example.grace.model.LoginResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -27,4 +28,14 @@ interface ApiService {
         @Query("senha") senha: String,   // "senha" é o nome do $_GET no cadastro.php
         @Query("tipo") tipo: String      // "tipo" é o nome do $_GET no cadastro.php
     ): Call<CadastroResponse> // Aqui esperamos um OBJETO único, não uma lista
+
+    @GET("grace_api/criar_doacao.php")
+    fun criarDoacao(
+        @Query("categoria") categoria: String,
+        @Query("quantidade") quantidade: Int,
+        @Query("usuario_id") usuarioId: Long
+    ): Call<CadastroResponse>
+
+    @GET("grace_api/listar_doacoes.php")
+    fun listarDoacoes(): Call<List<Doacao>>
 }

@@ -64,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this@LoginActivity, "Bem-vindo, ${usuarioLogado.usuarioNome}!", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             intent.putExtra("USER_NAME", usuarioLogado.usuarioNome)
+                            intent.putExtra("USER_ID", usuarioLogado.usuariold)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
 

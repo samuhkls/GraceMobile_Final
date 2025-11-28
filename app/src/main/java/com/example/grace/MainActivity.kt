@@ -3,6 +3,8 @@ package com.example.grace
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,13 +16,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val tvSaudacao = findViewById<TextView>(R.id.tvSaudacao)
+
+        // 1. RECEBER DADOS DO LOGIN
         val nomeUsuario = intent.getStringExtra("USER_NAME") ?: "Convidado"
+        // Pegamos o ID. Se não vier nada, usamos -1 (que indica erro)
+        val userId = intent.getLongExtra("USER_ID", -1)
+
+        // Configura Saudação
+        val tvSaudacao = findViewById<TextView>(R.id.tvSaudacao)
         val textoSaudacao = getString(R.string.saudacao_ola) + " " + nomeUsuario
         tvSaudacao.text = textoSaudacao
 
+        // 2. CONFIGURAR RECYCLERVIEW (Igual ao que já estava)
         val rvCategorias = findViewById<RecyclerView>(R.id.rvCategorias)
-
         val categorias = listOf(
             Categoria(getString(R.string.categoria_higiene), R.drawable.ic_hygiene),
             Categoria(getString(R.string.categoria_alimentos), R.drawable.ic_food),
@@ -31,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         rvCategorias.layoutManager = GridLayoutManager(this, 2)
         rvCategorias.adapter = CategoriaAdapter(categorias)
 
+        // 3. BOTÕES
         val ivPerfil1 = findViewById<android.widget.ImageView>(R.id.ivPerfil1)
         ivPerfil1.setOnClickListener {
             val intent = Intent(this, SobreActivity::class.java)
@@ -43,9 +52,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnNovaDoacao = findViewById<android.widget.Button>(R.id.btnAcaoPrincipal)
+        // --- BOTÃO NOVA DOAÇÃO (AQUI ESTÁ A MÁGICA) ---
+        val btnNovaDoacao = findViewById<Button>(R.id.btnAcaoPrincipal)
         btnNovaDoacao.setOnClickListener {
             val intent = Intent(this, NovaDoacaoActivity::class.java)
+
+            // REPASSA O ID PARA A PRÓXIMA TELA
+            intent.putExtra("USER_ID", userId)
+
             startActivity(intent)
         }
     }
