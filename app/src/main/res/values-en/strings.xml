@@ -60,4 +60,11 @@
     <string name="categoria_livros">Books</string>
     <string name="categoria_brinquedos">Toys</string>
     <string name="hint_selecione_categoria">Select category</string>
+    <string name="btn_gerenciar_doacoes">Manage Donations</string>
+    <string name="titulo_gerenciar_doacoes">Manage Donations</string>
+    <string name="desc_botao_excluir">Delete donation</string>
+    <string name="msg_exclusao_sucesso">Donation deleted successfully!</string>
+    <string name="msg_confirmar_exclusao">Are you sure you want to delete this donation?</string>
+    <string name="titulo_mural_necessidades">Needs Wall</string>
+    <string name="btn_ver_mural">View Requests Wall</string>
 </resources>

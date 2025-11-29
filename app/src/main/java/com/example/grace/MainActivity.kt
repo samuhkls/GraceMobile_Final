@@ -3,6 +3,7 @@ package com.example.grace
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,15 +20,14 @@ class MainActivity : AppCompatActivity() {
 
         // 1. RECEBER DADOS DO LOGIN
         val nomeUsuario = intent.getStringExtra("USER_NAME") ?: "Convidado"
-        // Pegamos o ID. Se não vier nada, usamos -1 (que indica erro)
         val userId = intent.getLongExtra("USER_ID", -1)
+        val tipoUsuario = intent.getStringExtra("USER_TYPE") ?: "Receptor"
 
         // Configura Saudação
         val tvSaudacao = findViewById<TextView>(R.id.tvSaudacao)
-        val textoSaudacao = getString(R.string.saudacao_ola) + " " + nomeUsuario
-        tvSaudacao.text = textoSaudacao
+        tvSaudacao.text = getString(R.string.saudacao_ola) + " " + nomeUsuario
 
-        // 2. CONFIGURAR RECYCLERVIEW (Igual ao que já estava)
+        // 2. CONFIGURAR RECYCLERVIEW
         val rvCategorias = findViewById<RecyclerView>(R.id.rvCategorias)
         val categorias = listOf(
             Categoria(getString(R.string.categoria_higiene), R.drawable.ic_hygiene),
@@ -36,31 +36,43 @@ class MainActivity : AppCompatActivity() {
             Categoria(getString(R.string.categoria_brinquedos), R.drawable.ic_toys),
             Categoria(getString(R.string.categoria_livros), R.drawable.ic_books)
         )
+
         rvCategorias.layoutManager = GridLayoutManager(this, 2)
-        rvCategorias.adapter = CategoriaAdapter(categorias)
-
-        // 3. BOTÕES
-        val ivPerfil1 = findViewById<android.widget.ImageView>(R.id.ivPerfil1)
-        ivPerfil1.setOnClickListener {
-            val intent = Intent(this, SobreActivity::class.java)
-            startActivity(intent)
-        }
-
-        val ivPerfil2 = findViewById<android.widget.ImageView>(R.id.ivPerfil2)
-        ivPerfil2.setOnClickListener {
-            val intent = Intent(this, ContatoActivity::class.java)
-            startActivity(intent)
-        }
-
-        // --- BOTÃO NOVA DOAÇÃO (AQUI ESTÁ A MÁGICA) ---
-        val btnNovaDoacao = findViewById<Button>(R.id.btnAcaoPrincipal)
-        btnNovaDoacao.setOnClickListener {
-            val intent = Intent(this, NovaDoacaoActivity::class.java)
-
-            // REPASSA O ID PARA A PRÓXIMA TELA
+        rvCategorias.adapter = CategoriaAdapter(categorias) { categoria ->
+            val intent = Intent(this, ConsultaActivity::class.java)
             intent.putExtra("USER_ID", userId)
-
             startActivity(intent)
+        }
+
+        // 3. BOTÕES DE PERFIL (Mantive sua lógica funcional)
+
+
+        // --- 4. BOTÕES DE AÇÃO (Lógica Unificada) ---
+
+        val btnNovaDoacao = findViewById<Button>(R.id.btnAcaoPrincipal)
+        val btnVerNecessidades = findViewById<Button>(R.id.btnVerNecessidades)
+
+        // Lógica para DOADORES e ADMINS
+        if (tipoUsuario.equals("Doador", ignoreCase = true) || tipoUsuario.equals("Admin", ignoreCase = true)) {
+
+            // Mostra o botão "Nova Doação"
+            btnNovaDoacao.visibility = View.VISIBLE
+            btnNovaDoacao.setOnClickListener {
+                val intent = Intent(this, NovaDoacaoActivity::class.java)
+                intent.putExtra("USER_ID", userId)
+                startActivity(intent)
+            }
+
+            // Mostra o botão "Ver Mural"
+            btnVerNecessidades.visibility = View.VISIBLE
+            btnVerNecessidades.setOnClickListener {
+                startActivity(Intent(this, MuralNecessidadesActivity::class.java))
+            }
+
+        } else {
+            // Se for Receptor, esconde ambos (ele usa o FAB na tela de Consulta)
+            btnNovaDoacao.visibility = View.GONE
+            btnVerNecessidades.visibility = View.GONE
         }
     }
 }

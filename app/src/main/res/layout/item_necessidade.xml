@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:strokeColor="#4CAF50"
+    app:strokeWidth="2dp"> <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/ivNecessidadeIcone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_food"
+        android:scaleType="fitCenter"
+        app:tint="#4CAF50"
+        android:contentDescription="Ícone" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNecessidadeCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Alimentos"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvNecessidadeDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Preciso de leite sem lactose para criança."
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvNecessidadeInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Pedido por: Maria em 12/10/2023"
+            android:textSize="12sp"
+            android:textColor="#808080"
+            android:layout_marginTop="8dp"
+            android:textStyle="italic"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -47,15 +47,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/ivPerfil1"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_person"
-            android:contentDescription="@string/desc_perfil" />
-
-        <ImageView
-            android:id="@+id/ivPerfil2"
+            android:id="@+id/ivPerfil"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:padding="10dp"
@@ -88,6 +80,39 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <LinearLayout
+        android:id="@+id/containerBotoes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btnVerNecessidades"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/btn_ver_mural"
+            android:textStyle="bold"
+            android:textColor="#2B66F8"
+            android:background="@drawable/btn_border"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp"
+            app:backgroundTint="@null" /> <Button
+        android:id="@+id/btnAcaoPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="@string/btn_nova_doacao"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_login_gradient"
+        android:elevation="6dp"
+        android:visibility="gone"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategorias"
         android:layout_width="0dp"
@@ -97,24 +122,9 @@
         android:layout_marginEnd="20dp"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/searchLayout"
-        app:layout_constraintBottom_toTopOf="@id/btnAcaoPrincipal"
+        app:layout_constraintBottom_toTopOf="@id/containerBotoes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/item_categoria" />
-
-    <Button
-        android:id="@+id/btnAcaoPrincipal"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_margin="20dp"
-        android:text="@string/btn_nova_doacao"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="@drawable/btn_login_gradient"
-        android:elevation="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

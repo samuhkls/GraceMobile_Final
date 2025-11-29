@@ -6,37 +6,43 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="6dp"
-    app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="@color/white">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:padding="12dp">
 
         <ImageView
             android:id="@+id/ivProdutoImagem"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/ic_food"
-            android:scaleType="centerCrop"
-            android:layout_marginEnd="16dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/teal_700"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:contentDescription="@string/desc_imagem_produto" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toEndOf="@id/ivProdutoImagem"
+            app:layout_constraintEnd_toStartOf="@id/btnSolicitar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/tvProdutoNome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/placeholder_nome_produto"
-                android:textSize="18sp"
+                tools:text="Arroz 5kg"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
 
@@ -44,20 +50,34 @@
                 android:id="@+id/tvProdutoDescricao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/placeholder_desc_produto"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="4dp" />
+                tools:text="Data: 2023-10-10"
+                android:textSize="12sp"
+                android:textColor="#808080"
+                android:layout_marginTop="2dp" />
 
             <TextView
                 android:id="@+id/tvProdutoQuantidade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/placeholder_quantidade"
-                android:textSize="13sp"
+                tools:text="Qtd: 10"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 android:textColor="@color/teal_700"
-                android:layout_marginTop="6dp" />
-
+                android:layout_marginTop="4dp" />
         </LinearLayout>
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSolicitar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Pedir"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_login_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

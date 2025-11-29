@@ -68,6 +68,25 @@
             android:exported="false"
             android:label="Nova Doação" />
 
+        <activity
+            android:name=".GerenciarDoacoesActivity"
+            android:exported="false"
+            android:label="@string/titulo_gerenciar_doacoes"
+            android:theme="@style/Theme.Grace" />
+
+        <activity
+            android:name=".MuralNecessidadesActivity"
+            android:exported="false"
+            android:label="@string/titulo_mural_necessidades"
+            android:theme="@style/Theme.Grace" />
+
+        <activity
+            android:name=".SolicitacoesAdminActivity"
+            android:exported="false"
+            android:label="Gerenciar Entregas"
+            android:theme="@style/Theme.Grace" />
+
+
     </application>
 
 </manifest>

@@ -60,5 +60,13 @@
     <string name="categoria_livros">Libros</string>
     <string name="categoria_brinquedos">Juguetes</string>
     <string name="hint_selecione_categoria">Seleccione la categoría</string>
+    <string name="btn_gerenciar_doacoes">Gestionar Donaciones</string>
+
+    <string name="titulo_gerenciar_doacoes">Gestionar Donaciones</string>
+    <string name="desc_botao_excluir">Eliminar donación</string>
+    <string name="msg_exclusao_sucesso">¡Donación eliminada con éxito!</string>
+    <string name="msg_confirmar_exclusao">¿Estás seguro de que deseas eliminar esta donación?</string>
+    <string name="titulo_mural_necessidades">Muro de Necesidades</string>
+    <string name="btn_ver_mural">Ver Muro de Pedidos</string>
 
 </resources>
