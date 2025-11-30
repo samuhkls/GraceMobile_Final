@@ -18,16 +18,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. RECEBER DADOS DO LOGIN
+
         val nomeUsuario = intent.getStringExtra("USER_NAME") ?: "Convidado"
         val userId = intent.getLongExtra("USER_ID", -1)
         val tipoUsuario = intent.getStringExtra("USER_TYPE") ?: "Receptor"
 
-        // Configura Saudação
+
         val tvSaudacao = findViewById<TextView>(R.id.tvSaudacao)
         tvSaudacao.text = getString(R.string.saudacao_ola) + " " + nomeUsuario
 
-        // 2. CONFIGURAR RECYCLERVIEW
+
         val rvCategorias = findViewById<RecyclerView>(R.id.rvCategorias)
         val categorias = listOf(
             Categoria(getString(R.string.categoria_higiene), R.drawable.ic_hygiene),
@@ -43,19 +43,42 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("USER_ID", userId)
             startActivity(intent)
         }
+        val ivPerfil = findViewById<ImageView>(R.id.ivPerfil)
 
-        // 3. BOTÕES DE PERFIL (Mantive sua lógica funcional)
+        ivPerfil.setOnClickListener { view ->
 
+            val popup = android.widget.PopupMenu(this, view)
 
-        // --- 4. BOTÕES DE AÇÃO (Lógica Unificada) ---
+            popup.menu.add(0, 1, 0, getString(R.string.titulo_sobre_nos))
+            popup.menu.add(0, 2, 0, getString(R.string.titulo_duvidas))
+            popup.menu.add(0, 3, 0, "Sair / Logout")
+
+            popup.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    1 -> {
+                        startActivity(Intent(this, SobreActivity::class.java))
+                        true
+                    }
+                    2 -> {
+                        startActivity(Intent(this, ContatoActivity::class.java))
+                        true
+                    }
+                    3 -> {
+                        realizarLogout()
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
 
         val btnNovaDoacao = findViewById<Button>(R.id.btnAcaoPrincipal)
         val btnVerNecessidades = findViewById<Button>(R.id.btnVerNecessidades)
 
-        // Lógica para DOADORES e ADMINS
+
         if (tipoUsuario.equals("Doador", ignoreCase = true) || tipoUsuario.equals("Admin", ignoreCase = true)) {
 
-            // Mostra o botão "Nova Doação"
             btnNovaDoacao.visibility = View.VISIBLE
             btnNovaDoacao.setOnClickListener {
                 val intent = Intent(this, NovaDoacaoActivity::class.java)
@@ -63,16 +86,22 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            // Mostra o botão "Ver Mural"
             btnVerNecessidades.visibility = View.VISIBLE
             btnVerNecessidades.setOnClickListener {
                 startActivity(Intent(this, MuralNecessidadesActivity::class.java))
             }
 
         } else {
-            // Se for Receptor, esconde ambos (ele usa o FAB na tela de Consulta)
+
             btnNovaDoacao.visibility = View.GONE
             btnVerNecessidades.visibility = View.GONE
         }
+    }
+    private fun realizarLogout() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+        startActivity(intent)
+        finish()
     }
 }

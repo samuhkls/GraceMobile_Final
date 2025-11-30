@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.grace.R
 import com.example.grace.model.Doacao
 
-// Recebemos a lista E uma função "onDeleteClick" que será chamada quando a lixeira for apertada
+
 class GerenciarAdapter(
     private val listaDoacoes: List<Doacao>,
-    private val onDeleteClick: (Doacao) -> Unit // Função de callback
+    private val onDeleteClick: (Doacao) -> Unit
 ) : RecyclerView.Adapter<GerenciarAdapter.GerenciarViewHolder>() {
 
     class GerenciarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,20 +37,19 @@ class GerenciarAdapter(
         holder.qtd.text = "Qtd: ${doacao.quantidade}"
         holder.data.text = doacao.data
 
-        // Lógica do Ícone (igual ao DoacaoAdapter)
-        val icone = when (doacao.categoria) { // Nota: em alguns adapters pode ser 'doacao.categoria' ou 'sol.itemCategoria'
+        val icone = when (doacao.categoria) {
             "Alimentos", "Food" -> R.drawable.ic_food
             "Roupas", "Clothing", "Ropa", "Roupas em Bom Estado" -> R.drawable.ic_clothes
             "Higiene", "Hygiene", "Produtos de Higiene", "Hygiene Products", "Productos de Higiene" -> R.drawable.ic_hygiene
             "Brinquedos", "Toys", "Juguetes" -> R.drawable.ic_toys
             "Livros", "Books", "Libros" -> R.drawable.ic_books
-            else -> R.drawable.ic_launcher_foreground // Ícone padrão
+            else -> R.drawable.ic_launcher_foreground
         }
         holder.img.setImageResource(icone)
 
-        // --- CLIQUE DA LIXEIRA ---
+
         holder.btnExcluir.setOnClickListener {
-            // Chama a função que a Activity passou, enviando a doação clicada
+
             onDeleteClick(doacao)
         }
     }

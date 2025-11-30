@@ -31,19 +31,25 @@ class AdminActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnNovaDoacao).setOnClickListener {
             startActivity(Intent(this, NovaDoacaoActivity::class.java))
         }
-        val cardSolicitacoes = findViewById<androidx.cardview.widget.CardView>(R.id.cardSolicitacoes) // <-- Adicione ID no XML
+        val cardSolicitacoes = findViewById<androidx.cardview.widget.CardView>(R.id.cardSolicitacoes)
         cardSolicitacoes.setOnClickListener {
             startActivity(Intent(this, SolicitacoesAdminActivity::class.java))
         }
 
-        // Buscar dados do estoque
+        findViewById<Button>(R.id.btnLogoutAdmin).setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+
         carregarDashboard()
     }
 
     private fun carregarDashboard() {
-        val tvTotalItens = findViewById<TextView>(R.id.tvTotalItens) // ID Novo
+        val tvTotalItens = findViewById<TextView>(R.id.tvTotalItens)
         val tvSolicitacoes = findViewById<TextView>(R.id.tvSolicitacoesPendentes)
-        val rvEstoque = findViewById<RecyclerView>(R.id.rvEstoqueAdmin) // RecyclerView Nova
+        val rvEstoque = findViewById<RecyclerView>(R.id.rvEstoqueAdmin)
 
         rvEstoque.layoutManager = LinearLayoutManager(this)
 
@@ -54,11 +60,10 @@ class AdminActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val dados = response.body()
                     if (dados != null) {
-                        // 1. Atualiza os Totais
-                        tvTotalItens.text = dados.totalItens.toString() // Agora mostra a soma das quantidades!
+
+                        tvTotalItens.text = dados.totalItens.toString()
                         tvSolicitacoes.text = dados.totalSolicitacoes.toString()
 
-                        // 2. Preenche a lista detalhada de estoque
                         rvEstoque.adapter = EstoqueAdapter(dados.estoque)
                     }
                 }

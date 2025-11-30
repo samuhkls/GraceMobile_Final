@@ -17,18 +17,14 @@ class NovaDoacaoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nova_doacao)
-
-        // 1. Recebe o ID do Usuário (passado pela MainActivity)
         val userId = intent.getLongExtra("USER_ID", -1)
 
-        // Verifica se o ID é válido (segurança básica)
         if (userId == -1L) {
             Toast.makeText(this, "Erro: Usuário não identificado. Faça login novamente.", Toast.LENGTH_LONG).show()
-            finish() // Fecha a tela se não tiver usuário
+            finish()
             return
         }
 
-        // 2. Configura o Dropdown (Categorias)
         val categorias = listOf(
             getString(R.string.categoria_alimentos),
             getString(R.string.categoria_roupas),
@@ -40,33 +36,26 @@ class NovaDoacaoActivity : AppCompatActivity() {
         val actvCategoria = findViewById<AutoCompleteTextView>(R.id.actvCategoria)
         actvCategoria.setAdapter(adapter)
 
-        // 3. Configura o Botão de Registrar
         val etQuantidade = findViewById<TextInputEditText>(R.id.etQuantidadeDoacao)
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrarDoacao)
 
         btnRegistrar.setOnClickListener {
-            // a. Coleta os dados
             val categoriaSelecionada = actvCategoria.text.toString()
             val quantidadeTexto = etQuantidade.text.toString()
-
-            // b. Validação simples
             if (categoriaSelecionada.isEmpty() || quantidadeTexto.isEmpty()) {
                 Toast.makeText(this, getString(R.string.erro_campo_obrigatorio), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            // Converte quantidade para Inteiro
             val quantidade = quantidadeTexto.toIntOrNull()
             if (quantidade == null || quantidade <= 0) {
                 Toast.makeText(this, "Quantidade inválida", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // c. CHAMA A API (Retrofit)
             val call = RetrofitClient.apiService.criarDoacao(
                 categoria = categoriaSelecionada,
                 quantidade = quantidade,
-                usuarioId = userId // O ID que veio lá do Login!
+                usuarioId = userId
             )
 
             call.enqueue(object : Callback<CadastroResponse> {
@@ -74,11 +63,10 @@ class NovaDoacaoActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val resposta = response.body()
                         if (resposta?.sucesso == true) {
-                            // SUCESSO!
+
                             Toast.makeText(this@NovaDoacaoActivity, resposta.mensagem, Toast.LENGTH_LONG).show()
-                            finish() // Fecha a tela e volta pra Main
+                            finish()
                         } else {
-                            // Erro do PHP
                             Toast.makeText(this@NovaDoacaoActivity, resposta?.mensagem ?: "Erro desconhecido", Toast.LENGTH_SHORT).show()
                         }
                     } else {

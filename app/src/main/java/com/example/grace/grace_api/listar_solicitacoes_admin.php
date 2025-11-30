@@ -27,6 +27,7 @@ try {
 $sql = "SELECT 
             S.SOLICITACAO_ID,
             U.USUARIO_NOME,
+            U.USUARIO_EMAIL,
             D.DOACAO_CATEGORIA,
             D.DOACAO_QUANTIDADE,
             S.DATA_SOLICITACAO
@@ -34,7 +35,7 @@ $sql = "SELECT
         JOIN USUARIO U ON S.USUARIO_ID = U.USUARIO_ID
         JOIN DOACAO D ON S.DOACAO_ID = D.DOACAO_ID
         WHERE S.STATUS = 'Pendente'
-        ORDER BY S.DATA_SOLICITACAO ASC"; // Os pedidos mais antigos aparecem primeiro (fila)
+        ORDER BY S.DATA_SOLICITACAO ASC";
 
 try {
     $stmt = $pdo->query($sql);

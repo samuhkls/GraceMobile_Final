@@ -64,20 +64,13 @@ class LoginActivity : AppCompatActivity() {
 
                             Toast.makeText(this@LoginActivity, "Bem-vindo, ${usuarioLogado.usuarioNome}!", Toast.LENGTH_SHORT).show()
 
-                            // --- AQUI COMEÇA A MUDANÇA ---
-
-                            // Declaramos a variavel 'intent' sem valor inicial
                             val intent: Intent
-                            // Verificamos: O tipo é "Admin"? (Ignorando maiúsculas/minúsculas)
                             if (usuarioLogado.usuarioTipo.equals("Admin", ignoreCase = true)) {
-                                // Se for Admin, preparamos a viagem para o Painel Administrativo
                                 intent = Intent(this@LoginActivity, AdminActivity::class.java)
                             } else {
-                                // Se NÃO for Admin (Doador/Receptor), vai para a Tela Principal normal
                                 intent = Intent(this@LoginActivity, MainActivity::class.java)
                             }
-                            // --- FIM DA MUDANÇA (O resto continua igual) ---
-                            // Passamos os dados para a próxima tela (seja ela qual for)
+                            // passando os dados para a próxima tela (qualquer uma)
                             intent.putExtra("USER_NAME", usuarioLogado.usuarioNome)
                             intent.putExtra("USER_ID", usuarioLogado.usuariold)
                             intent.putExtra("USER_TYPE", usuarioLogado.usuarioTipo)
@@ -102,26 +95,22 @@ class LoginActivity : AppCompatActivity() {
         val tvEsqueceu = findViewById<TextView>(R.id.tvEsqueceu)
 
         tvEsqueceu.setOnClickListener {
-            // 1. Define o destinatário (o e-mail do suporte do app)
-            val emailSuporte = "suporte.grace.app@gmail.com" // Pode ser um email fictício ou real
-
-            // 2. Define o Assunto e o Corpo do e-mail
+            val emailSuporte = "suporte.grace.app@gmail.com"
             val assunto = "Recuperação de Senha - Grace App"
             val corpo = "Olá equipe Grace,\n\nEsqueci minha senha e gostaria de solicitar a redefinição.\n\nMeu usuário/email cadastrado é: "
 
             // 3. Cria a Intent de E-mail
             val intent = Intent(Intent.ACTION_SENDTO).apply {
-                data = android.net.Uri.parse("mailto:") // Apenas apps de e-mail devem tratar isso
+                data = android.net.Uri.parse("mailto:")
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(emailSuporte))
                 putExtra(Intent.EXTRA_SUBJECT, assunto)
                 putExtra(Intent.EXTRA_TEXT, corpo)
             }
 
-            // 4. Tenta abrir o app de e-mail
             try {
                 startActivity(intent)
             } catch (e: Exception) {
-                // Caso o usuário não tenha nenhum app de e-mail instalado
+
                 Toast.makeText(this, "Nenhum aplicativo de e-mail encontrado.", Toast.LENGTH_SHORT).show()
             }
         }

@@ -1,10 +1,19 @@
 package com.example.grace
 
-import androidx.appcompat.app.AppCompatActivity
+import android.Manifest // Importante para a permissão
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.pm.PackageManager // Importante
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.example.grace.model.CadastroResponse
 import com.example.grace.network.RetrofitClient
 import com.google.android.material.textfield.TextInputEditText
@@ -18,6 +27,19 @@ class CadastroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) !=
+                PackageManager.PERMISSION_GRANTED
+            ) {
+
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    101
+                )
+            }
+        }
 
         val etNome = findViewById<TextInputEditText>(R.id.etNome)
         val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
@@ -33,7 +55,6 @@ class CadastroActivity : AppCompatActivity() {
         val tilConfirmarSenha = findViewById<TextInputLayout>(R.id.tilConfirmarSenha)
 
         val btnCadastrar = findViewById<Button>(R.id.btnCadastrar)
-
 
         btnCadastrar.setOnClickListener {
 
@@ -79,9 +100,7 @@ class CadastroActivity : AppCompatActivity() {
                 camposValidos = false
             }
 
-
             if (camposValidos) {
-
                 val apiService = RetrofitClient.apiService
                 val call = apiService.cadastrar(
                     nome = nome,
@@ -100,6 +119,8 @@ class CadastroActivity : AppCompatActivity() {
                             val cadastroResponse = response.body()
 
                             if (cadastroResponse?.sucesso == true) {
+                                enviarNotificacaoSucesso()
+
                                 Toast.makeText(
                                     this@CadastroActivity,
                                     cadastroResponse.mensagem,
@@ -125,6 +146,36 @@ class CadastroActivity : AppCompatActivity() {
                     }
                 })
             }
+        }
+    }
+
+    private fun enviarNotificacaoSucesso() {
+        val channelId = "canal_cadastro_grace"
+        val notificationId = 1
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Cadastro Grace"
+            val descriptionText = "Notificações de cadastro"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, name, importance).apply {
+                description = descriptionText
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.logo_grace)
+            .setContentTitle("Bem-vindo(a) ao Grace!")
+            .setContentText("Seu cadastro foi realizado com sucesso. Faça login para começar.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+
+        try {
+            notificationManager.notify(notificationId, builder.build())
+        } catch (e: SecurityException) {
+            e.printStackTrace()
         }
     }
 }

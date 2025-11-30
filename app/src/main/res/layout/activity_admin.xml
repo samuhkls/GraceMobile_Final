@@ -174,5 +174,14 @@
             android:padding="8dp"
             android:drawablePadding="8dp" />
 
+        <Button
+            android:id="@+id/btnLogoutAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Sair do Sistema"
+            android:textColor="#D32F2F"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
     </LinearLayout>
 </ScrollView>

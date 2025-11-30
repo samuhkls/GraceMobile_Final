@@ -3,7 +3,7 @@ package com.example.grace
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog // Importante para o popup de confirmação
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grace.adapter.GerenciarAdapter
@@ -21,18 +21,14 @@ class GerenciarDoacoesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_consulta) // Vamos reutilizar o layout da Consulta por enquanto!
-
-        // Se você criou um layout específico (ex: activity_gerenciar.xml), mude acima.
-        // Mas o activity_consulta.xml serve perfeitamente pois só tem uma RecyclerView.
+        setContentView(R.layout.activity_consulta)
 
         val fab = findViewById<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>(R.id.fabSolicitarAlgo)
         fab.visibility = android.view.View.GONE
 
-        rvGerenciar = findViewById(R.id.rvProdutos) // ID da RecyclerView no layout de consulta
+        rvGerenciar = findViewById(R.id.rvProdutos)
         rvGerenciar.layoutManager = LinearLayoutManager(this)
 
-        // Carrega a lista assim que abre a tela
         carregarDoacoes()
     }
 
@@ -44,7 +40,6 @@ class GerenciarDoacoesActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val lista = response.body() ?: emptyList()
 
-                    // Configura o adapter passando a lista E a função de clique (lambda)
                     adapter = GerenciarAdapter(lista) { doacaoParaDeletar ->
                         confirmarExclusao(doacaoParaDeletar)
                     }
@@ -63,12 +58,10 @@ class GerenciarDoacoesActivity : AppCompatActivity() {
             }
         })
     }
-
-    // Mostra um popup "Tem certeza?" antes de apagar
     private fun confirmarExclusao(doacao: Doacao) {
         AlertDialog.Builder(this)
-            .setTitle(getString(R.string.desc_botao_excluir)) // "Excluir doação"
-            .setMessage(getString(R.string.msg_confirmar_exclusao)) // "Tem certeza...?"
+            .setTitle(getString(R.string.desc_botao_excluir))
+            .setMessage(getString(R.string.msg_confirmar_exclusao))
             .setPositiveButton("Sim") { _, _ ->
                 deletarDoacaoRealmente(doacao.id)
             }
@@ -86,7 +79,6 @@ class GerenciarDoacoesActivity : AppCompatActivity() {
                     if (resp?.sucesso == true) {
                         Toast.makeText(this@GerenciarDoacoesActivity, getString(R.string.msg_exclusao_sucesso), Toast.LENGTH_SHORT).show()
 
-                        // Recarrega a lista para a doação sumir da tela
                         carregarDoacoes()
                     } else {
                         Toast.makeText(this@GerenciarDoacoesActivity, resp?.mensagem ?: "Erro ao excluir", Toast.LENGTH_SHORT).show()

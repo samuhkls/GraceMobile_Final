@@ -24,7 +24,6 @@ class ConsultaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_consulta)
 
-        // 1. Pega o ID do usuário que veio da Main
         val userId = intent.getLongExtra("USER_ID", -1)
 
         val rvProdutos = findViewById<RecyclerView>(R.id.rvProdutos)
@@ -37,9 +36,7 @@ class ConsultaActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val lista = response.body() ?: emptyList()
 
-                    // 2. Configura o adapter com a lógica de clique
                     rvProdutos.adapter = DoacaoAdapter(lista) { doacaoSelecionada ->
-                        // Quando clicar em Pedir:
                         fazerSolicitacao(userId, doacaoSelecionada.id)
                     }
 
@@ -68,7 +65,6 @@ class ConsultaActivity : AppCompatActivity() {
             return
         }
 
-        // Confirmação visual (Opcional, mas elegante)
         AlertDialog.Builder(this)
             .setTitle("Confirmar Solicitação")
             .setMessage("Deseja solicitar este item?")
@@ -88,7 +84,6 @@ class ConsultaActivity : AppCompatActivity() {
                     val resp = response.body()
                     if (resp?.sucesso == true) {
                         Toast.makeText(this@ConsultaActivity, "Pedido realizado com sucesso!", Toast.LENGTH_LONG).show()
-                        // Opcional: Voltar para a tela principal
                         finish()
                     } else {
                         Toast.makeText(this@ConsultaActivity, resp?.mensagem ?: "Erro", Toast.LENGTH_SHORT).show()
@@ -105,32 +100,26 @@ class ConsultaActivity : AppCompatActivity() {
     private fun mostrarPopupNecessidade(userId: Long) {
         if (userId == -1L) return
 
-        // 1. Criar o layout do popup via código (ou inflar um XML separado)
-        // Para ser rápido, vamos criar um layout programaticamente dentro do Dialog
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Solicitar Item Indisponível")
         builder.setMessage("Diga o que você precisa e nós tentaremos conseguir!")
 
-        // Cria um container para os inputs
         val layout = android.widget.LinearLayout(this)
         layout.orientation = android.widget.LinearLayout.VERTICAL
         layout.setPadding(50, 20, 50, 20)
 
-        // Input 1: Categoria (Spinner)
         val spinnerCategoria = Spinner(this)
         val categorias = listOf("Alimentos", "Roupas", "Higiene", "Brinquedos", "Livros")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categorias)
         spinnerCategoria.adapter = adapter
         layout.addView(spinnerCategoria)
 
-        // Input 2: Descrição (EditText)
         val inputDescricao = EditText(this)
         inputDescricao.hint = "Descreva: Ex: Leite sem lactose, Casaco G..."
         layout.addView(inputDescricao)
 
         builder.setView(layout)
 
-        // Botões do Popup
         builder.setPositiveButton("Enviar Pedido") { _, _ ->
             val categoria = spinnerCategoria.selectedItem.toString()
             val descricao = inputDescricao.text.toString()

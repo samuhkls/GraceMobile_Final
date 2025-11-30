@@ -21,7 +21,7 @@ class SolicitacoesAdminActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_consulta) // Reutilizando layout de lista
+        setContentView(R.layout.activity_consulta)
 
         val titulo = findViewById<TextView>(R.id.tvTituloConsulta)
         titulo.text = "Gerenciar Entregas"
@@ -65,14 +65,43 @@ class SolicitacoesAdminActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<CadastroResponse>, response: Response<CadastroResponse>) {
                         if (response.isSuccessful && response.body()?.sucesso == true) {
                             Toast.makeText(this@SolicitacoesAdminActivity, "Entrega confirmada!", Toast.LENGTH_SHORT).show()
-                            carregarLista() // Recarrega para sumir da lista
+
+                            enviarEmailNotificacao(solicitacao)
+
+                            carregarLista()
                         }
                     }
-                    override fun onFailure(call: Call<CadastroResponse>, t: Throwable) {}
+                    override fun onFailure(call: Call<CadastroResponse>, t: Throwable) {
+                        Toast.makeText(this@SolicitacoesAdminActivity, "Erro de conexão", Toast.LENGTH_SHORT).show()
+                    }
                 })
 
             }
             .setNegativeButton("Cancelar", null)
             .show()
+    }
+    private fun enviarEmailNotificacao(sol: SolicitacaoAdmin) {
+        val assunto = "Atualização do Pedido - Grace App"
+        val corpo = """
+            Olá ${sol.nomeReceptor},
+            
+            Boas notícias! Sua solicitação de ${sol.itemCategoria} (${sol.itemQuantidade} un) foi marcada como entregue/retirada.
+            
+            Esperamos ter ajudado!
+            Equipe Grace
+        """.trimIndent()
+
+        val intent = android.content.Intent(android.content.Intent.ACTION_SENDTO).apply {
+            data = android.net.Uri.parse("mailto:")
+            putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(sol.emailReceptor))
+            putExtra(android.content.Intent.EXTRA_SUBJECT, assunto)
+            putExtra(android.content.Intent.EXTRA_TEXT, corpo)
+        }
+
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Não foi possível abrir o app de e-mail.", Toast.LENGTH_SHORT).show()
+        }
     }
 }

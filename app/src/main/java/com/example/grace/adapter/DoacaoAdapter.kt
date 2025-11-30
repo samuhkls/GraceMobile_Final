@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.grace.R
 import com.example.grace.model.Doacao
 
-// Recebe a função 'onSolicitarClick'
 class DoacaoAdapter(
     private val listaDoacoes: List<Doacao>,
     private val onSolicitarClick: (Doacao) -> Unit
@@ -47,7 +46,6 @@ class DoacaoAdapter(
         }
         holder.imgProduto.setImageResource(icone)
 
-        // Clique do botão PEDIR
         holder.btnSolicitar.setOnClickListener {
             onSolicitarClick(doacao)
         }

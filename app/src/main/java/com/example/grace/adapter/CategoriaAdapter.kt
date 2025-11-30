@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.grace.R
 import com.example.grace.model.Categoria
 
-// Agora recebemos uma função 'onClick' no construtor
 class CategoriaAdapter(
     private val categorias: List<Categoria>,
     private val onClick: (Categoria) -> Unit
@@ -31,7 +30,6 @@ class CategoriaAdapter(
         holder.tvCategoria.text = categoria.nome
         holder.ivCategoria.setImageResource(categoria.iconeResId)
 
-        // Quando clicar, chama a função da Activity
         holder.itemView.setOnClickListener {
             onClick(categoria)
         }

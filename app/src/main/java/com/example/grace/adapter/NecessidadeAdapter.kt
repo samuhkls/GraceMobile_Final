@@ -33,13 +33,13 @@ class NecessidadeAdapter(private val lista: List<Necessidade>) :
         holder.info.text = "Pedido por: ${item.nomeSolicitante} em ${item.data}"
 
 
-        val iconeRes = when (item.categoria) { // Nota: em alguns adapters pode ser 'doacao.categoria' ou 'sol.itemCategoria'
+        val iconeRes = when (item.categoria) {
             "Alimentos", "Food" -> R.drawable.ic_food
             "Roupas", "Clothing", "Ropa", "Roupas em Bom Estado" -> R.drawable.ic_clothes
             "Higiene", "Hygiene", "Produtos de Higiene", "Hygiene Products", "Productos de Higiene" -> R.drawable.ic_hygiene
             "Brinquedos", "Toys", "Juguetes" -> R.drawable.ic_toys
             "Livros", "Books", "Libros" -> R.drawable.ic_books
-            else -> R.drawable.ic_launcher_foreground // Ícone padrão
+            else -> R.drawable.ic_launcher_foreground
         }
         holder.icone.setImageResource(iconeRes)
     }

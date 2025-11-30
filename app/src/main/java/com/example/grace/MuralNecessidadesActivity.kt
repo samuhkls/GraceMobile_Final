@@ -17,13 +17,11 @@ class MuralNecessidadesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_consulta) // Reutilizando layout
+        setContentView(R.layout.activity_consulta)
 
-        // Muda o título da tela
         val tvTitulo = findViewById<TextView>(R.id.tvTituloConsulta)
         tvTitulo.text = "Mural de Necessidades"
 
-        // escondendo o botao de +
         val fab = findViewById<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>(R.id.fabSolicitarAlgo)
         fab.visibility = android.view.View.GONE
 
